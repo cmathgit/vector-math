@@ -19,7 +19,7 @@ To ensure cross-architecture validity, generate the vectors across three differe
 - Granite (granite-embedding:30m - 768 dimensions)
 
 ## 1. Install Ollama
-If you haven't already, download and install Ollama to run models locally. Once installed, pull the three embedding models used in this study:
+If you haven't already, download and install [Ollama](https://ollama.com/) to run models locally. Once installed, pull the three embedding models used in this study:
 ```cmd
 ollama pull qwen3-embedding:0.6b
 ollama pull embeddinggemma:300m
