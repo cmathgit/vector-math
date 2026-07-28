@@ -1,5 +1,5 @@
 # LLM Embedding Geometry: A Theological Case Study
-Welcome to this exploration of distributional semantics! This repository provides a hands-on, verifiable look at how Large Language Models (LLMs) encode human language into high-dimensional vector space.
+Welcome to this exploration of distributional semantics! This repository provides a hands-on, verifiable look at how Large Language Models (LLMs) encode human language into high-dimensional vector space. [Read the paper](https://docs.google.com/document/d/1vNNs4r03Njck8cZLLiJ3_y5TmpSNiGCGt-rr6kA2tKM/edit?usp=sharing)
 
 By querying raw embedding weights from popular local models via the Ollama API, this project demonstrates the mathematical realities of "word-math." We begin by verifying the classic NLP analogy (`King - Man + Woman = Queen`) and then push the boundaries of semantic geometry by testing complex theological concepts—culminating in an attempt to mathematically pinpoint the Christ vector using contextual data native to the biblical corpus.
 
