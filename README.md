@@ -542,6 +542,8 @@ Notice that qwen3 returns a cosine similarity between [`God` - `Father` + `Son`]
 
 - **The Result**: The combined weight of the Trinity collapsed the vector directly onto `Christ`, successfully breaking the 0.86 threshold (0.866 on Qwen3)!
 
+![Cosine Similarity Vectors](cosine-similarity-vectors.png)
+
 ## Results:
 ```cmd
 **************************************************

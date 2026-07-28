@@ -23,3 +23,4 @@ embeddings/**/*.json
 !embeddings/qwen3/queen.json
 !embeddings/qwen3/man.json
 !embeddings/qwen3/woman.json
+!cosine-similarity-vectors.png
