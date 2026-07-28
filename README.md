@@ -23,7 +23,7 @@ If you haven't already, download and install [Ollama](https://ollama.com/) to ru
 ```cmd
 ollama pull qwen3-embedding:0.6b
 ollama pull embeddinggemma:300m
-ollama pull granite-embedding:30m
+ollama pull granite-embedding:278m
 ```
 
 ## 2. Generate the Embedding Vectors
@@ -531,3 +531,216 @@ Jesus + Anointed = Christ
 **Why it works**: The word `Christ` literally translates to "The Anointed One" from the Greek Christos (and Hebrew Mashiach). By taking the specific historical figure (`Jesus`) and adding his explicit textual ordination (`Anointed`), the resulting vector bypasses the semantic noise of generalized words like `King` entirely.
 
 **Result**: Another resounding success. Qwen3 achieved a 0.906 Cosine Similarity, proving that when the arithmetic perfectly aligns with both the etymology and the highly specific contextual usage within the corpus, the embedding geometry is remarkably precise.
+
+
+# Re-evaluating Hypothesis 1: `God` - `Father` + `Son`
+Notice that qwen3 returns a cosine similarity between [`God` - `Father` + `Son`] and `Christ` of 0.666238 (an ironically low score). To re-evaluating this, change [`God` - `Father` + `Son`] to [`God` + `Father` + `Son`]. The resulting cosine similarity jumps to 0.820411. This leads to a new hypothesis: including [`Holy` + `Spirit`] in the equation to yield even greater similarity values. This additive approach was highly effective. [`God` + `Father` + `Son` + `Holy` + `Spirit`] achieved a 0.866039 similarity to `Christ`.
+
+- **The Problem**: We originally treated the Trinity like a math puzzle, trying to subtract `Father` to isolate `Son`. It failed because `Son` is used too generically in the KJV text (e.g., "son of David", "wise son"), dragging the vector down to 0.666.
+
+- **The Solution**: The KJV corpus doesn't isolate the Godhead; it unifies it. By adding the entire formula (`God` + `Father` + `Son` + `Holy` + `Spirit`), we overwhelmed the generic noise of the word "son" with pure divine context.
+
+- **The Result**: The combined weight of the Trinity collapsed the vector directly onto `Christ`, successfully breaking the 0.86 threshold (0.866 on Qwen3)!
+
+## Results:
+```cmd
+**************************************************
+BREAKING THE THRESHOLD: HIGH-FIDELITY EQUATIONS [embeddings/qwen3]
+**************************************************
+
+Executing Equation 1: God - Father + Son
+
+Calculated Vector of [God - Father + Son] (First 5 dims): [0.0194800946, -0.0005873389999999975, -0.010577932, -0.024938228, 0.043418360999999996]
+Target 'Christ' Vector (First 5 dims): [0.01849496, 0.0812579, -0.008830858, -0.0007708907, 0.026493756]
+
+==================================================
+OLLAMA METRIC ANALYSIS [embeddings/qwen3]:
+ [God - Father + Son] vs. [Christ]
+==================================================
+1. Cosine Similarity:     0.666238
+2. Dot Product (Inner):   0.823709
+3. Euclidean Dist (L2):   0.938703
+4. Manhattan Dist (L1):   23.750791
+==================================================
+
+Executing Equation 1 v2: God + Father + Son
+
+Calculated Vector of [God + Father + Son] (First 5 dims): [0.015224167400000002, 0.020804527000000003, -0.032640578, 0.0024628980000000016, 0.138403905]
+Target 'Christ' Vector (First 5 dims): [0.01849496, 0.0812579, -0.008830858, -0.0007708907, 0.026493756]
+
+==================================================
+OLLAMA METRIC ANALYSIS [embeddings/qwen3]:
+ [God + Father + Son] vs. [Christ]
+==================================================
+1. Cosine Similarity:     0.820411
+2. Dot Product (Inner):   2.198660
+3. Euclidean Dist (L2):   1.945460
+4. Manhattan Dist (L1):   48.974624
+==================================================
+
+Executing Equation 1 v3: God + Father + Son + Holy + Ghost
+
+Calculated Vector of [God + Father + Son + Holy + Ghost] (First 5 dims): [0.0571344209, 0.10494787700000001, -0.055144898, -0.007380619399999999, 0.220641975]
+Target 'Christ' Vector (First 5 dims): [0.01849496, 0.0812579, -0.008830858, -0.0007708907, 0.026493756]
+
+==================================================
+OLLAMA METRIC ANALYSIS [embeddings/qwen3]:
+ [God + Father + Son + Holy + Ghost] vs. [Christ]
+==================================================
+1. Cosine Similarity:     0.838296
+2. Dot Product (Inner):   3.610070
+3. Euclidean Dist (L2):   3.510739
+4. Manhattan Dist (L1):   88.147925
+==================================================
+
+Executing Equation 1 v4: God + Father + Son + Holy + Spirit
+
+Calculated Vector of [God + Father + Son + Holy + Spirit] (First 5 dims): [0.0504422219, 0.143282737, -0.053696278, 0.0007573838000000013, 0.21826019000000002]
+Target 'Christ' Vector (First 5 dims): [0.01849496, 0.0812579, -0.008830858, -0.0007708907, 0.026493756]
+
+==================================================
+OLLAMA METRIC ANALYSIS [embeddings/qwen3]:
+ [God + Father + Son + Holy + Spirit] vs. [Christ]
+==================================================
+1. Cosine Similarity:     0.866039
+2. Dot Product (Inner):   3.846478
+3. Euclidean Dist (L2):   3.610215
+4. Manhattan Dist (L1):   89.402990
+==================================================
+
+**************************************************
+BREAKING THE THRESHOLD: HIGH-FIDELITY EQUATIONS [embeddings/gemma]
+**************************************************
+
+Executing Equation 1: God - Father + Son
+
+Calculated Vector of [God - Father + Son] (First 5 dims): [-0.20837893999999998, 0.031522786600000005, 0.052587566999999995, 0.014119867, 0.067676129]
+Target 'Christ' Vector (First 5 dims): [-0.21457437, -0.004915008, -0.06790281, 0.027708739, 0.010756975]
+
+==================================================
+OLLAMA METRIC ANALYSIS [embeddings/gemma]:
+ [God - Father + Son] vs. [Christ]
+==================================================
+1. Cosine Similarity:     0.516211
+2. Dot Product (Inner):   0.624287
+3. Euclidean Dist (L2):   1.101812
+4. Manhattan Dist (L1):   24.237572
+==================================================
+
+Executing Equation 1 v2: God + Father + Son
+
+Calculated Vector of [God + Father + Son] (First 5 dims): [-0.59600022, 0.0373593274, 0.020319847, 0.063721027, 0.049257779]
+Target 'Christ' Vector (First 5 dims): [-0.21457437, -0.004915008, -0.06790281, 0.027708739, 0.010756975]
+
+==================================================
+OLLAMA METRIC ANALYSIS [embeddings/gemma]:
+ [God + Father + Son] vs. [Christ]
+==================================================
+1. Cosine Similarity:     0.732849
+2. Dot Product (Inner):   1.910959
+3. Euclidean Dist (L2):   1.994374
+4. Manhattan Dist (L1):   41.854514
+==================================================
+
+Executing Equation 1 v3: God + Father + Son + Holy + Ghost
+
+Calculated Vector of [God + Father + Son + Holy + Ghost] (First 5 dims): [-1.0715086, 0.0166977134, 0.038169144399999994, 0.142623224, 0.088551924]
+Target 'Christ' Vector (First 5 dims): [-0.21457437, -0.004915008, -0.06790281, 0.027708739, 0.010756975]
+
+==================================================
+OLLAMA METRIC ANALYSIS [embeddings/gemma]:
+ [God + Father + Son + Holy + Ghost] vs. [Christ]
+==================================================
+1. Cosine Similarity:     0.767624
+2. Dot Product (Inner):   3.237032
+3. Euclidean Dist (L2):   3.508364
+4. Manhattan Dist (L1):   69.564883
+==================================================
+
+Executing Equation 1 v4: God + Father + Son + Holy + Spirit
+
+Calculated Vector of [God + Father + Son + Holy + Spirit] (First 5 dims): [-1.04373327, 0.0465892278, 0.043174354399999997, 0.157921834, 0.048071628000000005]
+Target 'Christ' Vector (First 5 dims): [-0.21457437, -0.004915008, -0.06790281, 0.027708739, 0.010756975]
+
+==================================================
+OLLAMA METRIC ANALYSIS [embeddings/gemma]:
+ [God + Father + Son + Holy + Spirit] vs. [Christ]
+==================================================
+1. Cosine Similarity:     0.768374
+2. Dot Product (Inner):   3.183559
+3. Euclidean Dist (L2):   3.435017
+4. Manhattan Dist (L1):   68.703501
+==================================================
+
+**************************************************
+BREAKING THE THRESHOLD: HIGH-FIDELITY EQUATIONS [embeddings/granite]
+**************************************************
+
+Executing Equation 1: God - Father + Son
+
+Calculated Vector of [God - Father + Son] (First 5 dims): [-0.043849213, -0.020446235, -0.015549295000000001, -0.013573396, 0.005834367600000001]
+Target 'Christ' Vector (First 5 dims): [0.0042680344, -0.0047604106, -0.08253472, -0.002285014, -0.014620787]
+
+==================================================
+OLLAMA METRIC ANALYSIS [embeddings/granite]:
+ [God - Father + Son] vs. [Christ]
+==================================================
+1. Cosine Similarity:     0.611050
+2. Dot Product (Inner):   0.747110
+3. Euclidean Dist (L2):   1.000346
+4. Manhattan Dist (L1):   21.792428
+==================================================
+
+Executing Equation 1 v2: God + Father + Son
+
+Calculated Vector of [God + Father + Son] (First 5 dims): [-0.071222127, 0.028424809000000002, -0.104103029, 0.035043795999999995, 0.0112153324]
+Target 'Christ' Vector (First 5 dims): [0.0042680344, -0.0047604106, -0.08253472, -0.002285014, -0.014620787]
+
+==================================================
+OLLAMA METRIC ANALYSIS [embeddings/granite]:
+ [God + Father + Son] vs. [Christ]
+==================================================
+1. Cosine Similarity:     0.803021
+2. Dot Product (Inner):   2.194060
+3. Euclidean Dist (L2):   2.019185
+4. Manhattan Dist (L1):   44.003668
+==================================================
+
+Executing Equation 1 v3: God + Father + Son + Holy + Ghost
+
+Calculated Vector of [God + Father + Son + Holy + Ghost] (First 5 dims): [-0.122571873, 0.042320143430000005, -0.193494936, 0.080430066, -0.0683023156]
+Target 'Christ' Vector (First 5 dims): [0.0042680344, -0.0047604106, -0.08253472, -0.002285014, -0.014620787]
+
+==================================================
+OLLAMA METRIC ANALYSIS [embeddings/granite]:
+ [God + Father + Son + Holy + Ghost] vs. [Christ]
+==================================================
+1. Cosine Similarity:     0.842851
+2. Dot Product (Inner):   3.708329
+3. Euclidean Dist (L2):   3.597372
+4. Manhattan Dist (L1):   78.216754
+==================================================
+
+Executing Equation 1 v4: God + Father + Son + Holy + Spirit
+
+Calculated Vector of [God + Father + Son + Holy + Spirit] (First 5 dims): [-0.13165477399999997, 0.05036754043, -0.21367655700000002, 0.06400967199999999, -0.038912292099999995]
+Target 'Christ' Vector (First 5 dims): [0.0042680344, -0.0047604106, -0.08253472, -0.002285014, -0.014620787]
+
+==================================================
+OLLAMA METRIC ANALYSIS [embeddings/granite]:
+ [God + Father + Son + Holy + Spirit] vs. [Christ]
+==================================================
+1. Cosine Similarity:     0.838790
+2. Dot Product (Inner):   3.703703
+3. Euclidean Dist (L2):   3.617941
+4. Manhattan Dist (L1):   79.097970
+==================================================
+```
+
+## Part 1: The Subtractive Failure
+```God - Father + Son = Christ```
+**Why it failed**: We initially hypothesized that mathematically subtracting the paternal context (`Father`) and adding the filial context (`Son`) would perfectly isolate "God the Son". This failed. The word "son" is overwhelmingly generic in the KJV text ("a wise son," "son of David"). Adding it injected massive amounts of generic human context, pulling the trajectory far away from `Christ` (dropping to 0.666).
+
+## Part 2: The Additive Triumph
+```God + Father + Son + Holy + Spirit = Christ```
+**Why it works**: Instead of trying to mathematically isolate the second person of the Trinity, adding the entire Triune formula creates a massive theological gravity well. The combined semantic weight of the Godhead completely overpowers the generic noise of the word "son," collapsing the vector directly onto the ultimate theological center of the New Testament: `Christ`. This shattered the baseline, achieving a 0.866 Cosine Similarity on Qwen3.

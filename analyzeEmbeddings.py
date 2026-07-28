@@ -147,7 +147,7 @@ if __name__ == "__main__":
     print("*" * 50)
     
     # Directory where students should save their Postman JSON responses
-    embed_dir = "embeddings/granite"
+    embed_dir = "embeddings/qwen3"
     
     try:
         # Load the actual embedding weights generated via Ollama 
@@ -164,6 +164,9 @@ if __name__ == "__main__":
         v_ollama_jesus = load_vector_from_json(os.path.join(embed_dir, "jesus.json"), "Jesus")
         v_ollama_savior = load_vector_from_json(os.path.join(embed_dir, "savior.json"), "Savior")
         v_ollama_anointed = load_vector_from_json(os.path.join(embed_dir, "anointed.json"), "Anointed")
+        v_ollama_holy = load_vector_from_json(os.path.join(embed_dir, "holy.json"), "Holy")
+        v_ollama_ghost = load_vector_from_json(os.path.join(embed_dir, "ghost.json"), "Ghost")
+        v_ollama_spirit = load_vector_from_json(os.path.join(embed_dir, "spirit.json"), "Spirit")
         
         print(f"Successfully loaded {v_ollama_king.dimensions}-dimensional vectors from '{embed_dir}/'!\n")
         
@@ -291,7 +294,55 @@ if __name__ == "__main__":
         print(f"3. Euclidean Dist (L2):   {v_trinitarian.euclidean_distance(v_ollama_christ):.6f}")
         print(f"4. Manhattan Dist (L1):   {v_trinitarian.manhattan_distance(v_ollama_christ):.6f}")
         print("=" * 50)
+        
+        # Equation 1 v2: Trinitarian Math
+        print("\nExecuting Equation 1 v2: God + Father + Son")
+        v_trinitarian = v_ollama_god + v_ollama_father + v_ollama_son
 
+        print(f"\nCalculated Vector of [God + Father + Son] (First 5 dims): {v_trinitarian.components[:5]}")
+        print(f"Target 'Christ' Vector (First 5 dims): {v_ollama_christ.components[:5]}")
+        
+        print("\n" + "=" * 50)
+        print(f"OLLAMA METRIC ANALYSIS [{embed_dir}]: \n [God + Father + Son] vs. [Christ]")
+        print("=" * 50)
+        print(f"1. Cosine Similarity:     {v_trinitarian.cosine_similarity(v_ollama_christ):.6f}")
+        print(f"2. Dot Product (Inner):   {v_trinitarian.dot_product(v_ollama_christ):.6f}")
+        print(f"3. Euclidean Dist (L2):   {v_trinitarian.euclidean_distance(v_ollama_christ):.6f}")
+        print(f"4. Manhattan Dist (L1):   {v_trinitarian.manhattan_distance(v_ollama_christ):.6f}")
+        print("=" * 50)
+        
+        # Equation 1 v3: Trinitarian Math
+        print("\nExecuting Equation 1 v3: God + Father + Son + Holy + Ghost")
+        v_trinitarian = v_ollama_god + v_ollama_father + v_ollama_son + v_ollama_holy + v_ollama_ghost
+
+        print(f"\nCalculated Vector of [God + Father + Son + Holy + Ghost] (First 5 dims): {v_trinitarian.components[:5]}")
+        print(f"Target 'Christ' Vector (First 5 dims): {v_ollama_christ.components[:5]}")
+        
+        print("\n" + "=" * 50)
+        print(f"OLLAMA METRIC ANALYSIS [{embed_dir}]: \n [God + Father + Son + Holy + Ghost] vs. [Christ]")
+        print("=" * 50)
+        print(f"1. Cosine Similarity:     {v_trinitarian.cosine_similarity(v_ollama_christ):.6f}")
+        print(f"2. Dot Product (Inner):   {v_trinitarian.dot_product(v_ollama_christ):.6f}")
+        print(f"3. Euclidean Dist (L2):   {v_trinitarian.euclidean_distance(v_ollama_christ):.6f}")
+        print(f"4. Manhattan Dist (L1):   {v_trinitarian.manhattan_distance(v_ollama_christ):.6f}")
+        print("=" * 50)
+        
+        # Equation 1 v4: Trinitarian Math
+        print("\nExecuting Equation 1 v4: God + Father + Son + Holy + Spirit")
+        v_trinitarian = v_ollama_god + v_ollama_father + v_ollama_son + v_ollama_holy + v_ollama_spirit
+
+        print(f"\nCalculated Vector of [God + Father + Son + Holy + Spirit] (First 5 dims): {v_trinitarian.components[:5]}")
+        print(f"Target 'Christ' Vector (First 5 dims): {v_ollama_christ.components[:5]}")
+        
+        print("\n" + "=" * 50)
+        print(f"OLLAMA METRIC ANALYSIS [{embed_dir}]: \n [God + Father + Son + Holy + Spirit] vs. [Christ]")
+        print("=" * 50)
+        print(f"1. Cosine Similarity:     {v_trinitarian.cosine_similarity(v_ollama_christ):.6f}")
+        print(f"2. Dot Product (Inner):   {v_trinitarian.dot_product(v_ollama_christ):.6f}")
+        print(f"3. Euclidean Dist (L2):   {v_trinitarian.euclidean_distance(v_ollama_christ):.6f}")
+        print(f"4. Manhattan Dist (L1):   {v_trinitarian.manhattan_distance(v_ollama_christ):.6f}")
+        print("=" * 50)
+        
         # Equation 2: Soteriological Math
         print("\nExecuting Equation 2: Jesus + Savior")
         v_soteriological = v_ollama_jesus + v_ollama_savior
